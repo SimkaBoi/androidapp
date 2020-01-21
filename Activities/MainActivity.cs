@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using Android.Views;
 using System.IO;
 using App.Adapters;
+using static Android.Widget.AdapterView;
+using Newtonsoft.Json;
 
 namespace App
 {
@@ -24,16 +26,31 @@ namespace App
             SetContentView(Resource.Layout.activity_main);
 
             var toAddActivityButton = FindViewById<Button>(Resource.Id.addButton);
+            var noteListView = FindViewById<ListView>(Resource.Id.list);
 
             toAddActivityButton.Click += toAddActivityButton_Click;
+
+            noteListView.ItemClick += (object sender, ItemClickEventArgs e) =>
+            {
+                var noteDetails = Refresh()[e.Position];
+
+                var intent = new Intent(this, typeof(NoteDetailActivity));
+                intent.PutExtra("noteDetails", JsonConvert.SerializeObject(noteDetails));
+                StartActivity(intent);
+            };
         }
 
         protected override void OnStart()
         {
             base.OnStart();
 
+            Refresh();
+        }
+
+        public List<NoteDetails> Refresh()
+        {
             var notes = new List<NoteDetails>();
-            var noteListView = FindViewById<ListView>(Resource.Id.noteListView);
+            var noteListView = FindViewById<ListView>(Resource.Id.list);
 
             var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             foreach (var file in Directory.GetFiles(path))
@@ -45,7 +62,7 @@ namespace App
                 });
                 noteListView.Adapter = new NoteAdapter(this, notes);
             }
-            return;
+            return notes;
         }
 
         private void toAddActivityButton_Click(object sender, EventArgs e)
