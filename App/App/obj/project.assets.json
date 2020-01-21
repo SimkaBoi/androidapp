@@ -516,21 +516,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\opilane\\.nuget\\packages\\": {}
+    "C:\\Users\\Opilane\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\opilane\\Desktop\\androidapp\\App\\App\\App.csproj",
+      "projectUniqueName": "C:\\Users\\Opilane\\Desktop\\androidapp\\App\\App\\App.csproj",
       "projectName": "App",
-      "projectPath": "C:\\Users\\opilane\\Desktop\\androidapp\\App\\App\\App.csproj",
-      "packagesPath": "C:\\Users\\opilane\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\opilane\\Desktop\\androidapp\\App\\App\\obj\\",
+      "projectPath": "C:\\Users\\Opilane\\Desktop\\androidapp\\App\\App\\App.csproj",
+      "packagesPath": "C:\\Users\\Opilane\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Opilane\\Desktop\\androidapp\\App\\App\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\opilane\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Opilane\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "monoandroid81"

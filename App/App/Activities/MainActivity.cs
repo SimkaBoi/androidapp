@@ -36,7 +36,7 @@ namespace App
 
         public async Task ReadAsync(Activity context)
         {
-            List<string> data = new List<string>(); 
+            List<string> data = new List<string>();
             var searchListView = FindViewById<ListView>(Resource.Id.searchListView);
             var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             if (_view == null)
@@ -47,8 +47,8 @@ namespace App
             {
                 data.Add(Path.GetFileNameWithoutExtension(file));
                 data.Add(File.ReadAllText(file));
+                searchListView.Adapter = new NoteAdapter(this, data);
             }
-            searchListView.Adapter = new NoteAdapter(this, data);
             return;
         }
 
