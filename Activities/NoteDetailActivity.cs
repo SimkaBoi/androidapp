@@ -39,6 +39,8 @@ namespace App.Activities
         {
             var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + $"/{_noteDetails.Title}.txt";
             File.Delete(path);
+            var intent = new Intent(this, typeof(MainActivity));
+            StartActivity(intent);
         }
     }
 }

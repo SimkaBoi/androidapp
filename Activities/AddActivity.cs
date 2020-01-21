@@ -31,6 +31,8 @@ namespace App.Activities
                 var desc = descField.Text;
 
                 await SaveAsync(title, desc);
+                var intent = new Intent(this, typeof(MainActivity));
+                StartActivity(intent);
             };
         }
 
