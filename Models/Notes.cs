@@ -24,5 +24,6 @@ namespace App.Models
     {
         public string Title { get; set; }
         public string Desc { get; set; }
+        public DateTime Created { get; set; }
     }
 }
