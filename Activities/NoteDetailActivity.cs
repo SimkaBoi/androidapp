@@ -35,12 +35,12 @@ namespace App.Activities
             _noteDetails = JsonConvert.DeserializeObject<Models.NoteDetails>(Intent.GetStringExtra("noteDetails"));
             title.Text = _noteDetails.Title;
             desc.Text = _noteDetails.Desc;
-            var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + $"/{_noteDetails.Title}.txt";
-            date.Text = File.GetCreationTime(path).ToString();
+            var oldpath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + $"/{_noteDetails.Title}.txt";
+            date.Text = File.GetCreationTime(oldpath).ToString();
             edit.Click +=  delegate
             {
-                Delete();
-                Edit(title.Text, desc.Text);
+               
+                Edit(title.Text, desc.Text,oldpath);
             };
 
             delete.Click +=  delegate
@@ -49,15 +49,15 @@ namespace App.Activities
             };
             
         }
-        public async Task Edit(string title, string desc)
+        public  void Edit(string title, string desc,string oldpath)
         {
             var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), title + ".txt");
             File.WriteAllText(path, desc);
-           // File.Move(OldFilename, title);
+           File.Move(oldpath, System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + $"/{title}.txt");
            var intent = new Intent(this, typeof(MainActivity));
             StartActivity(intent);
         }
-        public async Task Delete()
+        public void Delete()
         {
             var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + $"/{_noteDetails.Title}.txt";
             File.Delete(path);
