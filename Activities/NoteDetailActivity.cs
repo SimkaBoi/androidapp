@@ -25,8 +25,6 @@ namespace App.Activities
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.note_detail_layout);
            
-
-
             var title = FindViewById<TextView>(Resource.Id.title);
             var desc = FindViewById<TextView>(Resource.Id.desc);
             var delete = FindViewById<Button>(Resource.Id.deleteButton);
@@ -49,12 +47,12 @@ namespace App.Activities
             };
             
         }
-        public  void Edit(string title, string desc,string oldpath)
+        public void Edit(string title, string desc,string oldpath)
         {
             var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), title + ".txt");
+            File.Move(oldpath, path);
             File.WriteAllText(path, desc);
-           File.Move(oldpath, System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + $"/{title}.txt");
-           var intent = new Intent(this, typeof(MainActivity));
+            var intent = new Intent(this, typeof(MainActivity));
             StartActivity(intent);
         }
         public void Delete()
